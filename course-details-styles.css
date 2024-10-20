@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+body {
+    font-family: Arial, sans-serif; /* Change to your preferred font */
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Light background for contrast */
+}
+
+.container {
+    max-width: 800px; /* Limit max width for better readability */
+    margin: auto; /* Center the container */
+    padding: 20px; /* Add padding around the content */
+}
+
+h2, h3 {
+    color: #333; /* Dark text color for headings */
+}
+
+.roadmap-container {
+    margin-top: 20px; /* Space above roadmap image */
+}
+
+.roadmap-image {
+    width: 100%; /* Make image responsive */
+    max-width: 600px; /* Limit max width to avoid overflow */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners for the image */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/mtechlogo.png" type="Image/x-icon"/>
+    <title>MTECH IT INSTITUTE</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .close {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .map-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            position: relative;
+            height: 0;
+        }
+
+        .map-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+
+        /* Add spacing around the video container */
+        .video-container {
+            margin: 20px;
+            /* Adds margin on all sides */
+            padding: 20px;
+            /* Adds padding inside the container */
+            box-sizing: border-box;
+            /* Ensure padding is included in width/height calculation */
+        }
+
+        /* Optionally, adjust the padding/margin based on screen size */
+        @media (min-width: 768px) {
+            .video-container {
+                margin: 40px;
+                /* Larger space on larger screens */
+                padding: 30px;
+            }
+        }
+
+        /* Hero Section */
+        #home {
+            position: relative;
+            /* Ensure the logo can be positioned relative to the hero section */
+        }
+
+        /* Logo styling */
+        .logo {
+            width: 120px;
+            /* Adjust the width of the logo as needed */
+            height: auto;
+            z-index: 10;
+            /* Ensure the logo is on top */
+            position: absolute;
+            top: 20px;
+            /* Adjust this to position the logo from the top */
+            left: 20px;
+            /* Initial position for larger screens */
+        }
+
+        /* Responsive styling for centering the logo on smaller screens */
+        @media (max-width: 768px) {
+            .logo {
+                left: 80%;
+                margin-top: 550px;
+                /* Move it to the center horizontally */
+                transform: translateX(-50%);
+                /* Center the logo by adjusting its position */
+                top: 20px;
+                /* Keep some margin from the top */
+                display: none;
+
+            }
+        }
+
+        /* Optional: Increase logo size on larger screens */
+        @media (min-width: 768px) {
+            .logo {
+                width: 150px;
+                /* Larger logo for larger screens */
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .stat-card {
+                width: 90%;
+                /* Ensure cards take up a larger width on smaller screens */
+            }
+
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="fixed w-full z-10">
+        <nav class="bg-blue-600 text-white px-4 py-2 flex items-center justify-between">
+            <!-- Logo -->
+
+            <div class="text-xl font-bold flex flex-1">
+                <div> <img src="assets/images/mtechlogo.png" alt="MTECH IT INSTITUTE Logo" class="h-8">
+                    <!-- Reduced margin -->
+                </div>
+                <div>
+                MTECH IT INSTITUTE
+                </div>
+            </div>
+
+            <!-- Toggle Button (Visible on small screens) -->
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Navbar Links -->
+            <div id="menu" class="hidden md:flex md:space-x-6">
+                <a href="#home" class="hover:text-blue-300 transition-colors duration-300">Home</a>
+                <a href="#courses" class="hover:text-blue-300 transition-colors duration-300">Courses</a>
+                <a href="#about" class="hover:text-blue-300 transition-colors duration-300">About</a>
+                <a href="#contact" class="hover:text-blue-300 transition-colors duration-300">Contact</a>
+                <a href="assets/brochure.pdf" download
+                    class="flex-1 text-center text-green-500 hover:text-green-600 transition-colors duration-300">
+                    <i class="fas fa-download"></i> Download Brochure
+                </a>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Visible when toggled) -->
+        <div id="mobile-menu" class="hidden bg-blue-600 text-white md:hidden flex-col items-center space-y-4 p-4">
+            <a href="#home" class="hover:text-blue-300 transition-colors duration-300">Home</a>
+            <a href="#courses" class="hover:text-blue-300 transition-colors duration-300">Courses</a>
+            <a href="#about" class="hover:text-blue-300 transition-colors duration-300">About</a>
+            <a href="#contact" class="hover:text-blue-300 transition-colors duration-300">Contact</a>
+            <a href="assets/brochure.pdf" download
+                class="flex-1 text-center text-green-500 hover:text-green-600 transition-colors duration-300">
+                <i class="fas fa-download"></i> Download Brochure
+            </a>
+        </div>
+    </header>
+
+
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex flex-col justify-center items-center bg-cover bg-center"
+        style="background-image: url('assets/images/hero.gif');">
+
+        <!-- Logo on Top -->
+        <img src="assets/images/logo.png" alt="MTECH IT Institute Logo" class="absolute top-0 left-0 mt-10 logo">
+
+        <!-- Hero Text -->
+        <h1 class="text-5xl font-bold text-white hero-text">Welcome to <span class="bg-blue-600"> MTECH IT INSTITUTE
+            </span></h1>
+        <p class="text-xl text-white mt-4 hero-subtext">Empowering You to Build a Successful Career in IT</p>
+        <a href="#courses"
+            class="mt-6 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors duration-300">Explore
+            Courses</a>
+    </section>
+
+    <!-- Achievements section  -->
+    <section id="achievements" class="py-10 bg-blue-50">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">Our Achievements</h2>
+            <div class="flex flex-wrap justify-center gap-4 px-4">
+                <!-- Total Students -->
+                <div class="achievement-card flex flex-col items-center p-3 bg-white shadow-lg rounded-lg max-w-xs">
+                    <div class="icon text-blue-600 mb-2">
+                        <i class="fas fa-user-graduate fa-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-blue-600 mb-1">
+                        <span class="count" data-target="5000">0</span>+
+                    </h3>
+                    <p class="text-xs">Total Students</p>
+                </div>
+                <!-- Courses Offered -->
+                <div class="achievement-card flex flex-col items-center p-3 bg-white shadow-lg rounded-lg max-w-xs">
+                    <div class="icon text-green-600 mb-2">
+                        <i class="fas fa-book fa-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-green-600 mb-1">
+                        <span class="count" data-target="20">0</span>+
+                    </h3>
+                    <p class="text-xs">Courses Offered</p>
+                </div>
+                <!-- Years of Experience -->
+                <div class="achievement-card flex flex-col items-center p-3 bg-white shadow-lg rounded-lg max-w-xs">
+                    <div class="icon text-yellow-600 mb-2">
+                        <i class="fas fa-calendar-alt fa-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-yellow-600 mb-1">
+                        <span class="count" data-target="20">0</span>+
+                    </h3>
+                    <p class="text-xs">Years of Experience</p>
+                </div>
+                <!-- ISO Certified -->
+                <div class="achievement-card flex flex-col items-center p-3 bg-white shadow-lg rounded-lg max-w-xs">
+                    <div class="icon text-red-600 mb-2">
+                        <i class="fas fa-award fa-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-red-600 mb-1">
+                        ISO 9001:2015
+                    </h3>
+                    <p class="text-xs">ISO Certified</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Courses Section -->
+
+    <section id="courses" class="py-20 bg-gray-100">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6">Our Courses</h2>
+
+            <!-- Search Input -->
+            <input type="text" id="courseSearchInput"
+                class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 p-3 mb-4 border border-gray-300 rounded"
+                placeholder="Search courses.." oninput="filterCourses()">
+
+            <div class="grid md:grid-cols-3 gap-8 course-grid">
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="App Development" data-keywords="mobile apps, UI/UX">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=App Development&duration=6 Months&prerequisites=Basic programming knowledge&benefits=Become proficient in mobile app development and UI/UX design&roadmap=assets/images/appdev.png&fee=6999'">
+                        <h3 class="text-xl font-semibold">App Development</h3>
+                        <p class="mt-2">Learn how to build mobile applications using the latest technologies.</p>
+                    </div>
+                </div>
+                <!-- Add more course cards as needed -->
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="Web Development" data-keywords="web apps, fullstack, frontend">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=Web Development&duration=6 Months&prerequisites=Basic programming knowledge&benefits=Become proficient in web development and design&roadmap=assets/images/fullstack.png&fee=4999'">
+                        <h3 class="text-xl font-semibold">Web Development</h3>
+                        <p class="mt-2">Learn how to build Web applications using the latest technologies.</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="Animation 2d/3d" data-keywords="animation, cartoon, 2d, 3d">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=Animation 2d3d &duration=1 year&prerequisites=Basic programming knowledge&benefits=Become proficient in mobile app development and UI/UX design&roadmap=assets/images/animation.jpg&fee=10000'">
+                        <h3 class="text-xl font-semibold">Animation 2d/3d</h3>
+                        <p class="mt-2">Learn how to create 2d/3d animations using the latest technologies.</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="Graphic Design" data-keywords="graphic design, design, photoshop, canva">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=Graphic Design &duration=1 year&prerequisites=Basic Designing Knowledge&benefits=Become expert in graphic Designing&roadmap=assets/images/graphic.png&fee=5000'">
+                        <h3 class="text-xl font-semibold">Graphic Design</h3>
+                        <p class="mt-2">Learn Graphic Designing using the latest technologies.</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="Digital Marketing"
+                    data-keywords="digital marketing, marketing, facebook, seo, email marketing, social media marketing">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=Digital Marketing &duration=1 year&prerequisites=Basic computer knowledge&benefits=Become a expert Digital Marketer&roadmap=assets/images/digital.jpg&fee=7999'">
+                        <h3 class="text-xl font-semibold">Digital Marketing</h3>
+                        <p class="mt-2">Learn Digital Marketing using the latest technologies.</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="python programming" data-keywords="python, programming, data science">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=Python Programming &duration=6 Month&prerequisites=Basic programming knowledge&benefits=Become proficient in Python&roadmap=assets/images/python.jpg&fee=5000'">
+                        <h3 class="text-xl font-semibold">Python Progamming</h3>
+                        <p class="mt-2">Learn Python Programming and become a python developer.</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="o level" data-keywords="o level, govt exam, O, level">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=O level &duration=1 year&prerequisites=10+2&benefits=Become eligible to apply in Govt. Exams&roadmap=assets/images/olevel.jpg&fee=18000'">
+                        <h3 class="text-xl font-semibold">'O'level</h3>
+                        <p class="mt-2">Accelerate your academic journy with MTECH IT INSTITUTE's 'O'level program</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="DTP" data-keywords="computer course, dtp, digital printing, banner, poster, template">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=DTP &duration=4 Months&prerequisites=10th&benefits=Learn computer concept and fundamental, Page Maker, Coral Draw, photoshop and more&roadmap=assets/images/dtp.jpg&fee=5500'">
+                        <h3 class="text-xl font-semibold">DTP</h3>
+                        <p class="mt-2">DTP courses teach students how to design,layout, and print professional-looking
+                            documents.</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="DCAA"
+                    data-keywords="dcaa, diploma,computer application, ms word, ms excel, powerpoint, tally, gst, 6 moth course">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=DCAA &duration=6 Months&prerequisites=10th&benefits=Empower your career with DCAA, blening computer applications and accounting skills for expertise in finencial management and technology.&roadmap=assets/images/dcaa.jpg&fee=7500'">
+                        <h3 class="text-xl font-semibold">DCAA</h3>
+                        <p class="mt-2">Diploma in Computer Application and Accounting</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="DCA" data-keywords="dca, diploma,computer course, ms office, html, css">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=DCA(Diploma in Computer Application) &duration=6 Months&prerequisites=10th&benefits=Develop practical skills in computer application&roadmap=assets/images/dca.jpg&fee=4500'">
+                        <h3 class="text-xl font-semibold">DCA</h3>
+                        <p class="mt-2">Develop foundational skills in computer hardware, software, and networking</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="CFA" data-keywords="cfa, computer funtamentals,">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=CFA(Computer Fundamentals and Applications) &duration=6/8 Months&prerequisites=10th&benefits=Understand Computer Fundamentals&roadmap=assets/images/cfa.jpg&fee=9500'">
+                        <h3 class="text-xl font-semibold">CFA</h3>
+                        <p class="mt-2">Develop foundational skills in computer hardware, software, and networking</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="ADCA" data-keywords="adca, diploma course, 1 year course, web design, html, css, tally">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=ADCA&duration=1 Years&prerequisites=10th&benefits=&roadmap=assets/images/adca.jpg&fee=12000'">
+                        <h3 class="text-xl font-semibold">ADCA</h3>
+                        <p class="mt-2">Advanced Diploma in Computer Applications is a comprehensive program that
+                            enhance skills in computer applications,software development,and It management</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="PGDCA" data-keywords="pgdca, post graduate course, diploma courses">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=PGDCA&duration=1 Years&prerequisites=Graduate&benefits=Develop advanced skills in computer programming&roadmap=assets/images/pgdca.jpg&fee=20000'">
+                        <h3 class="text-xl font-semibold">PGDCA</h3>
+                        <p class="mt-2">PGDCA is postgraduate program that enhances skills in computer
+                            applications,software development, and IT management.</p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="CCCA" data-keywords="ccca, ccc, computer course, basic">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=CCCA&duration=3 Months&prerequisites=1oth&benefits=Develop basic skills in computer operation&roadmap=assets/images/ccca.jpg&fee=4500'">
+                        <h3 class="text-xl font-semibold">CCCA</h3>
+                        <p class="mt-2">CCCA is a foundational program that introduce students to computer applications.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="ADOAP" data-keywords="adoap, advanced,skills,programming,automatio,computer courses">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=ADOAP&duration=1 Years&prerequisites=10th&benefits=Advanced skills in office automation and programming&roadmap=assets/images/adoap.jpg&fee=12000'">
+                        <h3 class="text-xl font-semibold">ADOAP</h3>
+                        <p class="mt-2">Enhance Skills in officec automation, programming,and IT management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- About Section with Images and Animations -->
+    <section id="about" class="py-20 bg-gray-100">
+        <div class="container mx-auto text-center">
+            <!-- Section Title -->
+            <h2 class="text-4xl font-bold mb-10 about-title text-gray-800">About Us</h2>
+
+            <!-- Image and Content Section -->
+            <div class="md:flex items-center justify-center space-y-8 md:space-y-0 md:space-x-8 mb-16">
+                <!-- Image Section -->
+                <div class="w-full md:w-1/2 px-4 md:pl-6">
+                    <img src="assets/images/about.jpg" alt="Our Team" class="w-full rounded-lg shadow-lg about-image">
+                </div>
+
+                <!-- Content Section -->
+                <div class="md:w-1/2 text-left text-lg text-gray-700 px-6 md:px-0">
+                    <p class="mb-6 leading-relaxed">
+                        At <strong class="text-blue-600">MTECH IT INSTITUTE</strong>, we are driven by the vision to
+                        empower students with the
+                        knowledge and skills required to thrive in the dynamic world of IT. Our instructors are experts
+                        in their fields, and our
+                        comprehensive curriculum ensures hands-on learning experiences.
+                    </p>
+                    <p class="mb-6 leading-relaxed">
+                        We offer a wide range of courses in <strong class="text-blue-600">App Development</strong>,
+                        <strong class="text-blue-600">Web Development</strong>,
+                        and specialized <strong class="text-blue-600">Diploma Programs</strong> that cater to students
+                        from all backgrounds.
+                    </p>
+                    <p class="leading-relaxed">
+                        Join us to unlock your potential and shape a successful career in the technology industry.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Video Section -->
+            <div class="video-container mx-auto p-4">
+                <video class="w-full rounded-lg shadow-lg about-video" controls>
+                    <source src="assets/videos/about-us.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-blue-50">
+        <div id="testimonialContainer" class="container mx-auto text-center px-4 md:px-8">
+            <!-- Section Title -->
+            <h2 class="text-4xl font-bold mb-10 text-gray-800">What Our Students Say</h2>
+
+            <!-- Testimonials Wrapper -->
+            <div class="flex overflow-x-auto space-x-4 pb-4">
+                <!-- Testimonial Card 1 -->
+                <div class="testimonial-card bg-white shadow-lg rounded-lg p-6 flex-none w-80 mx-auto">
+                    <p class="text-lg italic leading-relaxed">"MTECH IT INSTITUTE provided me with the skills and
+                        knowledge to succeed in the tech industry. The instructors are fantastic!"</p>
+                    <p class="mt-6 font-semibold text-gray-700">- John Doe</p>
+                </div>
+
+                <!-- Testimonial Card 2 -->
+                <div class="testimonial-card bg-white shadow-lg rounded-lg p-6 flex-none w-80 mx-auto">
+                    <p class="text-lg italic leading-relaxed">"The hands-on approach to learning at MTECH helped me land
+                        my first job in app development!"</p>
+                    <p class="mt-6 font-semibold text-gray-700">- Jane Smith</p>
+                </div>
+
+                <!-- Testimonial Card 3 -->
+                <div class="testimonial-card bg-white shadow-lg rounded-lg p-6 flex-none w-80 mx-auto">
+                    <p class="text-lg italic leading-relaxed">"I loved the supportive community at MTECH. It made my
+                        learning experience enjoyable and fruitful."</p>
+                    <p class="mt-6 font-semibold text-gray-700">- Alex Johnson</p>
+                </div>
+
+                <!-- Testimonial Card 4 -->
+                <div class="testimonial-card bg-white shadow-lg rounded-lg p-6 flex-none w-80 mx-auto">
+                    <p class="text-lg italic leading-relaxed">"The curriculum is very comprehensive and the instructors
+                        are very helpful!"</p>
+                    <p class="mt-6 font-semibold text-gray-700">- Sarah Williams</p>
+                </div>
+
+                <!-- Testimonial Card 5 -->
+                <div class="testimonial-card bg-white shadow-lg rounded-lg p-6 flex-none w-80 mx-auto">
+                    <p class="text-lg italic leading-relaxed">"Great place to learn! I recommend it to anyone looking to
+                        get into IT."</p>
+                    <p class="mt-6 font-semibold text-gray-700">- Michael Brown</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-100">
+        <div class="container mx-auto text-center px-4 md:px-0">
+            <h2 class="text-4xl font-bold mb-8">Contact Us</h2>
+            <form id="contactForm" class="max-w-lg mx-auto" onsubmit="sendEmail(event)">
+                <input type="text" id="name" name="name" placeholder="Your Name"
+                    class="w-full p-3 mb-6 border border-gray-300 rounded" required>
+                <input type="email" id="email" name="email" placeholder="Your Email"
+                    class="w-full p-3 mb-6 border border-gray-300 rounded" required>
+                <textarea id="message" name="message" placeholder="Your Message"
+                    class="w-full p-3 mb-6 border border-gray-300 rounded" required></textarea>
+                <button type="submit"
+                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-300">Send
+                    Message</button>
+                <div id="successMessage" class="mt-4 text-green-500"></div>
+                <div id="errorMessage" class="mt-4 text-red-500"></div>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4 lg:px-8">
+            <!-- Footer Sections -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- About Section -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">MTECH IT INSTITUTE</h3>
+                    <p class="text-gray-400">Empowering you to build a successful career in IT through our specialized
+                        courses and expert faculty.</p>
+                    <p class="mt-4 text-gray-400">Address: 230135, Main Road Patti, Pratapgarh ,Uttar Pradesh, India</p>
+                    <p class="text-gray-400">Contact: +91 8299809562, +91 7800413348 | Email: <a
+                            href="mailto:mtechitinstitute@gmail.com"
+                            class="text-blue-400 hover:text-blue-300">mtechitinstitute@gmail.com</a></p>
+                </div>
+
+                <!-- Map Section -->
+                <div class="map-responsive">
+                    <h3 class="text-xl font-semibold mb-4">Our Location</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7159.413338133252!2d81.114548!3d25.926156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399f91ff7ee68a75%3A0x4c9e4bff20d0e9d!2sMain%20Rd%2C%20Patti%2C%20Uttar%20Pradesh%20230350!5e0!3m2!1sen!2sin!4v1697648881234!5m2!1sen!2sin"
+                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                        class="rounded-lg shadow-lg">
+                    </iframe>
+                </div>
+
+                <!-- Social Media Section -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-6 justify-center lg:justify-start">
+                        <a href="https://www.facebook.com/mtechitinstitutepatti" target="_blank"
+                            class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f text-2xl"></i>
+                        </a>
+                        <a href="https://www.twitter.com" target="_blank"
+                            class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/mtechitinstitute" target="_blank"
+                            class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com" target="_blank"
+                            class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in text-2xl"></i>
+                        </a>
+                        <a href="https://www.youtube.com" target="_blank"
+                            class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider Line -->
+            <hr class="my-8 border-gray-700">
+
+            <!-- Bottom Footer -->
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+                <p>&copy; 2024 MTECH IT INSTITUTE. All Rights Reserved.</p>
+                <div class="space-x-4">
+                    <a href="privacy-policy.html" class="text-gray-400 hover:text-gray-200 transition">Privacy
+                        Policy</a>
+                    <a href="terms.html" class="text-gray-400 hover:text-gray-200 transition">Terms of Service</a>
+                    <a href="faq.html" class="text-gray-400 hover:text-gray-200 transition">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize EmailJS
+        (function () {
+            emailjs.init("pazNR17JBxIKeckmf"); // Replace with your EmailJS user ID
+        })();
+
+        // Toggle mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Enable horizontal scrolling with mouse wheel
+        const testimonialContainer = document.getElementById('testimonialContainer');
+
+        testimonialContainer.addEventListener('wheel', (event) => {
+            event.preventDefault(); // Prevent the default scroll behavior
+            testimonialContainer.scrollLeft += event.deltaY; // Scroll horizontally based on vertical scroll
+        });
+
+
+        // Function to send email
+        function sendEmail(event) {
+            event.preventDefault(); // Prevent the default form submission
+            emailjs.sendForm('service_iqhnvcm', 'template_3h987vp', '#contactForm') // Replace with your service ID and template ID
+                .then((response) => {
+                    console.log('SUCCESS!', response.status, response.text);
+                    document.getElementById('successMessage').innerText = "Email sent successfully!";
+                    document.getElementById('contactForm').reset(); // Reset the form
+                }, (error) => {
+                    console.log('FAILED...', error);
+                    document.getElementById('errorMessage').innerText = "Failed to send email. Try again later.";
+                });
+        }
+
+
+
+
+
+        // GSAP Animation
+        gsap.from(".hero-text", {
+            duration: 1.5,
+            opacity: 0,
+            y: -50,
+            ease: "power2.out"
+        });
+
+        gsap.from(".hero-subtext", {
+            duration: 1.5,
+            opacity: 0,
+            y: 50,
+            delay: 0.5,
+            ease: "power2.out"
+        });
+
+        // Scroll-triggered animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from(".course-card", {
+            scrollTrigger: {
+                trigger: ".course-grid",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            scale: 0.8,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power2.out"
+        });
+
+        gsap.from("#about", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1
+        });
+
+        gsap.from("#contactForm", {
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1
+        });
+
+
+        function openCourseDetails(title, description, duration, prerequisites, benefits, roadmapImage, fee) {
+            // Create a URL with query parameters to pass the course details
+            const courseDetailsUrl = `course-details.html?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&duration=${encodeURIComponent(duration)}&prerequisites=${encodeURIComponent(prerequisites)}&benefits=${encodeURIComponent(benefits)}&roadmapImage=${encodeURIComponent(roadmapImage)}&fee=${encodeURIComponent(fee)}`;
+
+            // Open a new window with the course details page
+            window.open(courseDetailsUrl, '_blank');
+        }
+
+
+
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.count');
+        const speed = 200; // Speed of the animation
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+
+                // Calculate the increment
+                const increment = target / speed;
+
+                // If count is less than target, increase the count
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            updateCount();
+        });
+
+
+
+
+        function filterCourses() {
+            // Get the search input value
+            const searchValue = document.getElementById('courseSearchInput').value.toLowerCase();
+
+            // Get all the course cards
+            const courseCards = document.querySelectorAll('.course-card');
+
+            // Loop through the courses and hide those that don't match the search
+            courseCards.forEach((card) => {
+                const keywords = card.getAttribute('data-keywords').toLowerCase();
+
+                // If the course name or keywords match the search value, show the course card
+                if (keywords.includes(searchValue)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+
+    </script>
+</body>
+
+</html>
