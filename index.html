@@ -4,14 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/images/mtechlogo.png" type="Image/x-icon"/>
-    <title>MTECH IT INSTITUTE</title>
+    <link rel="icon" href="assets/images/mtechlogo.png" type="Image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MTECH IT INSTITUTE - IT Courses for Your Career Growth</title>
+    <meta name="description"
+        content="MTECH IT INSTITUTE offers a wide range of IT courses including web development, data science, cloud computing, and more. Learn and get certified by industry experts.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mtechitinstitute.com">
+    <meta property="og:title" content="MTECH IT INSTITUTE - IT Courses for Your Career Growth">
+    <meta property="og:description"
+        content="Explore top IT courses with MTECH IT INSTITUTE. Build your IT career with expert-guided training and certifications.">
+    <meta property="og:image" content="https://mtechitinstitute.com/assets/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mtechitinstitute.com">
+    <meta property="twitter:title" content="MTECH IT INSTITUTE - IT Courses for Your Career Growth">
+    <meta property="twitter:description"
+        content="Build a successful career in IT with industry-relevant courses from MTECH IT INSTITUTE.">
+    <meta property="twitter:image" content="https://mtechitinstitute.com/assets/images/twitter-image.jpg">
+
+    <!-- Keywords (Not as important as they used to be, but helpful) -->
+    <meta name="keywords"
+        content="IT courses, MTECH IT Institute, web development, data science, App Development, Digital Marketing, Photoshop, tally, adca, dcaa, o-level, ccc, bca,computer coaching near me, patti, matech it institute patti, cloud computing, software development, tech training">
+
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <!-- Canonical URL (Important for SEO to avoid duplicate content) -->
+    <link rel="canonical" href="https://mtechitinstitute.com">
+
+    <!-- Robots.txt Meta Tag -->
+    <meta name="robots" content="index, follow">
+
+    <!-- Schema Markup for SEO (Course Example) -->
+    <script type="application/ld+json">
+     {
+       "@context": "https://schema.org",
+       "@type": "EducationalOrganization",
+       "name": "MTECH IT INSTITUTE",
+       "url": "https://mtechitinstitute.com",
+       "logo": "https://mtechitinstitute.com/assets/images/logo.png",
+       "sameAs": [
+         "https://www.facebook.com/mtechit",
+         "https://twitter.com/mtechitins",
+         "https://www.linkedin.com/company/mtechitinstitute"
+       ],
+       "course": {
+         "@type": "Course",
+         "name": "Full Stack Development",
+         "description": "Learn Full Stack Development including HTML, CSS, JavaScript, React, and Node.js.",
+         "provider": {
+           "@type": "Organization",
+           "name": "MTECH IT INSTITUTE"
+         }
+       }
+     }
+     </script>
 
     <style>
         /* Modal Styles */
@@ -98,6 +153,8 @@
             /* Initial position for larger screens */
         }
 
+    
+
         /* Responsive styling for centering the logo on smaller screens */
         @media (max-width: 768px) {
             .logo {
@@ -119,6 +176,8 @@
                 width: 150px;
                 /* Larger logo for larger screens */
             }
+
+           
         }
 
 
@@ -126,6 +185,10 @@
             .stat-card {
                 width: 90%;
                 /* Ensure cards take up a larger width on smaller screens */
+            }
+            .footlogo{
+                display: flex;
+                flex-direction: column;
             }
 
         }
@@ -145,7 +208,7 @@
                     <!-- Reduced margin -->
                 </div>
                 <div>
-                MTECH IT INSTITUTE
+                    MTECH IT INSTITUTE
                 </div>
             </div>
 
@@ -190,24 +253,26 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative h-screen flex flex-col justify-center items-center bg-cover bg-center"
-    style="background-image: url('assets/images/hero.gif');">
+        style="background-image: url('assets/images/hero.gif');">
 
-    <!-- Logo on Top -->
-    <img src="assets/images/logo.png" alt="MTECH IT Institute Logo" class="absolute top-0 left-0 mt-10 logo">
+        <!-- Logo on Top -->
+        <img src="assets/images/logo.png" alt="MTECH IT Institute Logo" class="absolute top-0 left-0 mt-10 logo">
 
-    <!-- Hero Text -->
-    <h1 class="text-5xl font-bold text-white hero-text">Welcome to <span class="bg-blue-600"> MTECH IT INSTITUTE
-        </span></h1>
-    <p class="text-xl text-white mt-4 hero-subtext">Empowering You to Build a Successful Career in IT</p>
+        <!-- Hero Text -->
+        <h1 class="text-5xl font-bold text-white hero-text">
+            Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-300 text-shadow-lg">MTECH IT INSTITUTE</span>
+        </h1>
+        
+        <p class="text-xl text-white mt-4 hero-subtext">Empowering You to Build a Successful Career in IT</p>
 
-    <!-- Explore Courses Button -->
-    <a href="#courses"
-        class="mt-6 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors duration-300 z-10">Explore
-        Courses</a>
-</section>
+        <!-- Explore Courses Button -->
+        <a href="#courses"
+            class="mt-6 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors duration-300 z-10">Explore
+            Courses</a>
+    </section>
 
 
-    
+
 
     <!-- Achievements section  -->
     <section id="achievements" class="py-10 bg-blue-50">
@@ -333,7 +398,7 @@
                 <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
                     data-title="o level" data-keywords="o level, govt exam, O, level">
                     <div class="course-info"
-                        onclick="window.location.href='course-details.html?course=O level &duration=1 year&prerequisites=10+2&benefits=Become eligible to apply in Govt. Exams&roadmap=assets/images/olevel.jpg&fee=18000'">
+                        onclick="window.location.href='course-details.html?course=O level &duration=1 year&prerequisites=12th&benefits=Become eligible to apply in Govt. Exams&roadmap=assets/images/olevel.jpg&fee=18000'">
                         <h3 class="text-xl font-semibold">'O'level</h3>
                         <p class="mt-2">Accelerate your academic journy with MTECH IT INSTITUTE's 'O'level program</p>
                     </div>
@@ -400,10 +465,19 @@
                 <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
                     data-title="CCCA" data-keywords="ccca, ccc, computer course, basic">
                     <div class="course-info"
-                        onclick="window.location.href='course-details.html?course=CCCA&duration=3 Months&prerequisites=1oth&benefits=Develop basic skills in computer operation&roadmap=assets/images/ccca.jpg&fee=4500'">
+                        onclick="window.location.href='course-details.html?course=CCCA&duration=3 Months&prerequisites=10th&benefits=Develop basic skills in computer operation&roadmap=assets/images/ccca.jpg&fee=4500'">
                         <h3 class="text-xl font-semibold">CCCA</h3>
                         <p class="mt-2">CCCA is a foundational program that introduce students to computer applications.
                         </p>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="CCC" data-keywords="ccc, computer concept, fundamentals,computer courses">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=CCC&duration=4-6 months&prerequisites=12th&benefits=Basic skills in computer application&roadmap=assets/images/ccc.jpg&fee=7000'">
+                        <h3 class="text-xl font-semibold">CCC</h3>
+                        <p class="mt-2">CCC is a foundational course that introduce sudents to cmputer fundamentals.</p>
                     </div>
                 </div>
 
@@ -415,6 +489,16 @@
                         <p class="mt-2">Enhance Skills in officec automation, programming,and IT management.</p>
                     </div>
                 </div>
+
+                <div class="course-card bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 cursor-pointer"
+                    data-title="Tally" data-keywords="tally, tally prime, prime, erp9,accounting,computer courses">
+                    <div class="course-info"
+                        onclick="window.location.href='course-details.html?course=Tally&duration=6 months&prerequisites=10th&benefits=Mastering Accounting and Business Management&roadmap=assets/images/tally.jpg&fee=4000'">
+                        <h3 class="text-xl font-semibold">Tally</h3>
+                        <p class="mt-2">Gain expertise in Tally, india's leading accounting software.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -513,12 +597,14 @@
                 </div>
 
                 <div class="testimonial-card bg-white shadow-lg rounded-lg p-6 flex-none w-80 mx-auto">
-                    <p class="text-lg italic leading-relaxed">"I appriciate the institute's focus on practical training and projects. It prepared me for real-world challenges"</p>
+                    <p class="text-lg italic leading-relaxed">"I appriciate the institute's focus on practical training
+                        and projects. It prepared me for real-world challenges"</p>
                     <p class="mt-6 font-semibold text-gray-700">- Aditi</p>
                 </div>
 
                 <div class="testimonial-card bg-white shadow-lg rounded-lg p-6 flex-none w-80 mx-auto">
-                    <p class="text-lg italic leading-relaxed">"Supportive staff,flexible payment plans and affordable fees make this institute a great choice."</p>
+                    <p class="text-lg italic leading-relaxed">"Supportive staff,flexible payment plans and affordable
+                        fees make this institute a great choice."</p>
                     <p class="mt-6 font-semibold text-gray-700">- Pankaj</p>
                 </div>
             </div>
@@ -556,7 +642,12 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <!-- About Section -->
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">MTECH IT INSTITUTE</h3>
+                    <div class="footlogo flex items-center space-x-2">
+                        <img src="assets/images/mtechlogo.png" class="w-16 h-auto md:w-24">
+                    
+                        <h3 class="text-xl font-semibold">MTECH IT INSTITUTE</h3>
+                    </div>
+                    
                     <p class="text-gray-400">Empowering you to build a successful career in IT through our specialized
                         courses and expert faculty.</p>
                     <p class="mt-4 text-gray-400">Address: 230135, Main Road Patti, Pratapgarh ,Uttar Pradesh, India</p>
@@ -619,6 +710,20 @@
         </div>
     </footer>
 
+
+    
+
+    <!-- Sitemap Link (Optional but recommended for large sites) -->
+    <a href="https://mtechitinstitute.com/sitemap.xml" style="display:none;">Sitemap</a>
+
+    <!-- Analytics Script (Google Analytics Example) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-XXXXX-Y');
+    </script>
 
 
 
