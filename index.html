@@ -63,6 +63,7 @@
   "@type": "Course",
   "name": "Full Stack Development",
   "description": "Learn Full Stack Development including HTML, CSS, JavaScript, React, and Node.js.",
+  "category": "Computer Training",
   "provider": {
     "@type": "EducationalOrganization",
     "name": "MTECH IT INSTITUTE",
@@ -70,15 +71,16 @@
   },
   "offers": {
     "@type": "Offer",
-    "url": "https://www.mtechitinstitute.in",
-    "price": "0", 
+    "url": "https://www.mtechitinstitute.in/",
+    "price": "0",
     "priceCurrency": "INR",
     "availability": "https://schema.org/InStock",
     "validFrom": "2024-01-01"
   },
   "hasCourseInstance": {
     "@type": "CourseInstance",
-    "courseMode": "offline",
+    "courseMode": "https://schema.org/Offline",
+    "courseWorkload": "10 hours/week",
     "startDate": "2024-07-10",
     "endDate": "2024-12-30",
     "location": {
@@ -90,12 +92,16 @@
         "addressLocality": "Patti",
         "addressRegion": "UP",
         "postalCode": "230135",
-        "addressCountry": "IN"
+        "addressCountry": {
+          "@type": "Country",
+          "name": "India"
+        }
       }
     }
   }
 }
 </script>
+
 
 
 
